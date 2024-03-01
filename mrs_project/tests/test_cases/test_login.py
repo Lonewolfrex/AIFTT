@@ -35,8 +35,26 @@ def test_successful_login(select_webdriver,username,password,session_id):
     home_page = HomePage(driver,session_id)
     
     login_page.open_login_page()
-    # is_successful_navigation(driver,"Login")
+    verify_successful_navigation(driver,"Login")
     login_page.perform_login_action(username,password)
-    # is_successful_navigation(driver,"Home")
+    verify_successful_navigation(driver,"Home")
     home_page.perform_logout_action()
-    # is_successful_navigation(driver,"Login")      
+    verify_successful_navigation(driver,"Login")      
+    
+@pytest.mark.parametrize("username, password, session_id", [
+("admin","Admin123","Inpatient Ward"),
+("wrongadmin","Admin123","Isolation Ward"),
+("admin","wrongPassword","Laboratory"),
+("","","Outpatient Clinic")
+])        
+def test_unsuccessful_login_with_incorrect_credentials(select_webdriver,username,password,session_id):
+    driver=select_webdriver;
+    # maximize_browser(driver);
+
+    login_page = LoginPage(driver,session_id)
+    home_page = HomePage(driver,session_id)
+    
+    login_page.open_login_page()
+    verify_successful_navigation(driver,"Login")
+    login_page.perform_login_action(username,password)  
+    login_page.verify_incorrect_credential_message()
