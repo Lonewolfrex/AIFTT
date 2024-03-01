@@ -5,7 +5,7 @@ from utils.set_env import *
 from pages.login_pg import *
 from pages.home_pg import *
 
-@pytest.fixture(scope="function", params=["firefox"], autouse=True)
+@pytest.fixture(scope="function", params=["chrome"], autouse=True)
 def select_webdriver(request):
     if request.param.lower() == 'chrome':
         driver = webdriver.Chrome()
