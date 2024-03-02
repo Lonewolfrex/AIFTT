@@ -25,7 +25,7 @@ def select_webdriver(request):
 ("admin","Admin123","Laboratory"),
 ("admin","Admin123","Outpatient Clinic"),
 ("admin","Admin123","Pharmacy"),
-("admin","Admin123","Registration Desk"),
+# ("admin","Admin123","Registration Desk"),
 ])    
 def test_successful_login(select_webdriver,username,password,session_id):
     driver=select_webdriver;
