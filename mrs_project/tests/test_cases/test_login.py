@@ -8,9 +8,9 @@ from pages.home_pg import *
 @pytest.fixture(scope="function", params=["chrome"], autouse=True)
 def select_webdriver(request):
     if request.param.lower() == 'chrome':
-        driver = webdriver.Chrome(executable_path='/home/parrot/Downloads/chromedriver')
+        driver = webdriver.Chrome()
     elif request.param.lower() == 'firefox':
-        driver = webdriver.Firefox(executable_path='/home/parrot/Downloads/geckodriver')
+        driver = webdriver.Firefox()
     else:
         raise ValueError(f"Unsupported browser type: {request.param}")    
     maximize_browser(driver);
